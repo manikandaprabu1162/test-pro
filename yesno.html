@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Sathiya · the question</title>
+  <!-- Bootstrap + icons + refined fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Elegant serif & sans-serif pairing -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #f7f0f3;
+      background-image: radial-gradient(circle at 30% 20%, #f9eef3 0%, #f3e4eb 100%);
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    /* main card — subtle elegance */
+    .question-card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 48px 24px 48px 24px;
+      box-shadow: 0 40px 60px -30px rgba(120, 60, 80, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+      max-width: 440px;
+      width: 100%;
+      padding: 32px 24px 36px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      text-align: center;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* name — refined serif */
+    .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      background: linear-gradient(145deg, #9e6b7e, #b8829a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    /* subtle divider */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #dbb6c9, transparent);
+      margin: 6px auto 16px;
+    }
+
+    /* GIF container — elegant frame */
+    .gif-frame {
+      width: 180px;
+      height: 180px;
+      margin: 8px auto 12px;
+      border-radius: 40% 20% 40% 20%;
+      background: #f2dfe8;
+      padding: 8px;
+      box-shadow: 0 25px 35px -15px rgba(140, 80, 100, 0.3), 0 0 0 4px white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .gif-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 40% 20% 40% 20%;
+      display: block;
+    }
+
+    /* fallback icon (elegant) — will be replaced by GIFs */
+    .gif-frame i {
+      font-size: 5rem;
+      color: #b3869b;
+      opacity: 0.8;
+    }
+
+    /* question area — clean */
+    .question-text {
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: #4f3843;
+      background: rgba(255, 255, 255, 0.5);
+      padding: 16px 20px;
+      border-radius: 50px;
+      margin: 16px 0 24px;
+      border: 1px solid white;
+      line-height: 1.6;
+      width: 100%;
+    }
+
+    .question-text span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 500;
+      color: #a55a7a;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* button group — elegant spacing */
+    .btn-group-elegant {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 8px 0 16px;
+      width: 100%;
+    }
+
+    .yes-btn {
+      background: #ac4e6e;
+      border: none;
+      padding: 14px 32px;
+      font-size: 1.8rem;
+      font-weight: 500;
+      border-radius: 60px;
+      box-shadow: 0 8px 18px -6px #ac4e6e80;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      min-width: 140px;
+      transition: 0.2s;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    .yes-btn:hover {
+      background: #bf6a86;
+      transform: scale(1.02);
+    }
+
+    .no-btn {
+      background: #b7a3af;
+      border: none;
+      padding: 14px 28px;
+      font-size: 1.8rem;
+      font-weight: 500;
+      border-radius: 60px;
+      box-shadow: 0 6px 14px -4px #9b8593;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      min-width: 120px;
+      cursor: pointer;
+      transition: 0.1s;
+      position: relative;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .no-btn.move-no {
+      transition: transform 0.2s ease;
+    }
+
+    /* footer note — minimal */
+    .footer-note {
+      font-size: 0.9rem;
+      color: #99748b;
+      margin-top: 20px;
+      background: rgba(255, 255, 255, 0.4);
+      padding: 6px 16px;
+      border-radius: 50px;
+      display: inline-block;
+      backdrop-filter: blur(4px);
+    }
+
+    /* all elements centered */
+    .question-card > * {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="question-card">
+    <!-- name -->
+    <div class="name">Sathiya</div>
+    <div class="divider"></div>
+
+    <!-- ===== GIF CONTAINER ===== -->
+    <div class="gif-frame" id="gifContainer">
+    </div>
+
+    <!-- question -->
+    <div class="question-text">
+      <span>will you be mine?</span>
+      one answer changes everything
+    </div>
+
+    <!-- buttons -->
+    <div class="btn-group-elegant">
+      <button class="yes-btn" id="yesBtn"><i class="bi bi-heart-fill me-2"></i>YES</button>
+      <button class="no-btn" id="noBtn"><i class="bi bi-emoji-frown me-2"></i>no</button>
+    </div>
+
+    <!-- footer -->
+    <div class="footer-note">
+      <i class="bi bi-heart"></i> with grace <i class="bi bi-heart"></i>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function(){
+      // ===== ELEGANT GIF ROTATION =====
+      // Array of GIF paths - REPLACE THESE WITH YOUR ACTUAL GIF FILES
+      const gifList = [
+        'images/sad1.gif',  // e.g., 'images/love1.gif'
+        'images/sad2.gif',  // e.g., 'images/love2.gif'
+        'images/sad3.gif',  // e.g., 'images/love3.gif'
+      ];
+      
+      let currentGifIndex = 0;
+      const $gifContainer = $('#gifContainer');
+      const $fallbackIcon = $('#fallbackIcon');
+      
+      // Function to update GIF (with fade effect)
+      function updateGif(index) {
+        const gifPath = gifList[index % gifList.length];
+        
+        // Remove any existing img
+        $gifContainer.find('img').remove();
+        
+        // Hide fallback icon
+        $fallbackIcon.hide();
+        
+        // Create and append new img
+        const $img = $('<img>', {
+          src: gifPath,
+          alt: 'romantic moment',
+          style: 'display: block;',
+          error: function() {
+            // If GIF fails to load, show fallback icon
+            $(this).remove();
+            $fallbackIcon.show();
+          }
+        });
+        
+        $gifContainer.append($img);
+      }
+      
+      // Preload first GIF (if you have real files)
+      // For demo, we'll keep fallback visible until files exist
+      // To test with actual GIFs, uncomment the line below:
+      // updateGif(0);
+
+      // yes button redirect
+      $('#yesBtn').on('click', function(){
+        window.location.href = 'love.html';
+      });
+
+      // ===== MISCHIEVOUS NO BUTTON =====
+      let noClickedCount = 0;
+      const $noBtn = $('#noBtn');
+      const $card = $('.question-card');
+
+      $noBtn.on('mouseenter', function(e){
+        let btn = $(this);
+        let cardW = $card.outerWidth();
+        let cardH = $card.outerHeight();
+        let btnW = btn.outerWidth();
+        let btnH = btn.outerHeight();
+
+        let currLeft = btn.position().left;
+        let currTop = btn.position().top;
+
+        let newLeft = currLeft + (Math.random() * 200 - 100);
+        let newTop = currTop + (Math.random() * 180 - 90);
+
+        newLeft = Math.min(cardW - btnW - 15, Math.max(15, newLeft));
+        newTop = Math.min(cardH - btnH - 15, Math.max(15, newTop));
+
+        $card.css('position', 'relative');
+        btn.addClass('move-no').css({
+          'position': 'absolute',
+          'left': newLeft + 'px',
+          'top': newTop + 'px',
+          'zIndex': 999
+        });
+
+        noClickedCount++;
+        
+        // ===== CHANGE GIF EACH TIME NO IS APPROACHED =====
+        currentGifIndex = (currentGifIndex + 1) % gifList.length;
+        updateGif(currentGifIndex);
+        
+        // change button text
+        if (noClickedCount === 1) btn.html('😌 sure?');
+        else if (noClickedCount === 2) btn.html('🌸 please');
+        else if (noClickedCount === 3) btn.html('✨ think');
+        else if (noClickedCount >= 4) btn.html('❤️ yes');
+      });
+
+      $noBtn.on('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).trigger('mouseenter');
+      });
+      
+      // Optional: also change GIF on page load (first GIF)
+      // updateGif(0);
+    });
+  </script>
+</body>
+</html>
