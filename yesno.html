@@ -201,6 +201,7 @@
 
     <!-- ===== GIF CONTAINER ===== -->
     <div class="gif-frame" id="gifContainer">
+        <img src="images/loveu.gif" alt="Sathiya and you">
     </div>
 
     <!-- question -->
@@ -306,11 +307,12 @@
         updateGif(currentGifIndex);
         
         // change button text
-        if (noClickedCount === 1) btn.html('😌 sure?');
-        else if (noClickedCount === 2) btn.html('🌸 please');
-        else if (noClickedCount === 3) btn.html('✨ think');
-        else if (noClickedCount >= 4) btn.html('❤️ yes');
-      });
+        if (noClickedCount === 1) btn.html('🌸 reconsider');
+        else if (noClickedCount === 2) btn.html('✨ accept love');
+        else if (noClickedCount === 4) btn.html('💖 please yes');
+        else if (noClickedCount === 7) btn.html('🌟 try again');
+        else if (noClickedCount === 8) btn.html('💗 love me');
+        else if (noClickedCount === 3) btn.html('💗 think again'); });
 
       $noBtn.on('click', function(e){
         e.preventDefault();
