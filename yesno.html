@@ -307,12 +307,7 @@
         updateGif(currentGifIndex);
         
         // change button text
-        if (noClickedCount === 1) btn.html('🌸 reconsider');
-        else if (noClickedCount === 2) btn.html('✨ accept love');
-        else if (noClickedCount === 4) btn.html('💖 please yes');
-        else if (noClickedCount === 7) btn.html('🌟 try again');
-        else if (noClickedCount === 8) btn.html('💗 love me');
-        else if (noClickedCount === 3) btn.html('💗 think again'); });
+        if (noClickedCount === 1) btn.html(' 😭 No');});
 
       $noBtn.on('click', function(e){
         e.preventDefault();
